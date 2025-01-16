@@ -1,6 +1,6 @@
 # Facial-Recognition
-Polytech work in computer vision for facial recognition of all classmates 
-of the course of computer vision. 
+Polytech project for facial recognition of all classmates 
+of the course of computer vision. The project was made by 2 people.
 
 The DeepFace library was used to extract the embeddings, and classical classifier models
 were evaluated to determine to which person the photo belongs.

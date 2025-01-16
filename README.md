@@ -2,50 +2,48 @@
 Polytech work in computer vision for facial recognition of all classmates 
 of the course of computer vision. 
 
-It was used the library DeepFace to extract the embeddings, and classifier models
-to determine from which person belongs the photo.
+The DeepFace library was used to extract the embeddings, and classical classifier models
+were evaluated to determine to which person the photo belongs.
 
 ![Example1](images-demo/me_identification.JPG)
 
 
 ## Dataset
 
-It was used a dataset with 10 photos of each person in the class, that is composed
-of 11 people, with the face well appeared in each of them.
+A dataset with 10 photos of each person in the class, composed of 11 people, was used, 
+with the face clearly visible in each photo.
 
 ## Implementation
 
-For the implementation of the solution it was necessary a sequence of steps. 
-At first, it was necessary to cut all the photos to only appear the face of each person.
-As the dataset is the ground truth, it was made by hand, with each person cutting
-your own photos, so it didn't turn a long work.
+For the implementation of the solution, a sequence of steps was necessary. At first, 
+it was necessary to crop all the photos to only show the face of each person. Since the dataset 
+is the ground truth, it was done by hand, with each person cropping their own photos so that this 
+task wouldn't take too long.
 
-The sequence of steps of the implementation consisted in extracting the embeddings of the image,
-and to train a classifier to determine who is the author of the photo.
+The sequence of implementation steps consisted in extracting the embeddings of the image,
+and training a classifier to determine who is the author of the photo.
 
 ### Embeddings Extraction
 
-To extract the embeddings it was used the library DeepFace, that offers a framework
-to facilitate the testing of differents models to do it. So, using that library
-it was tested the "VGG-Face" and "Facenet512" models.
+To extract the embeddings, the library DeepFace was used, that offers a framework
+to facilitate the testing of differents models for embeddings extraction. This way, it was
+tested the "VGG-Face" and "Facenet512" models.
 
 ### Face Classification
 
-For the classification part, it was tested many models to get the best, and 
-compare the results:
-MLPClassifier, KNN, SVMClassifier, LinearDiscriminantAnalysis, 
+For the classification part, many models were tested to find the best one, and 
+to compare the results: MLPClassifier, KNN, SVMClassifier, LinearDiscriminantAnalysis, 
 QuadraticDiscriminantAnalysis and GaussianNB.
 
-The input of the model was the embeddings and the ground truth the name of the
-person.
+The model's input was the embeddings and the ground truth the person's name.
 
 ### Data Augmentation
 
-To get good results it was necessary to do data augmentation techniques. The
-reason is because the dataset is too short for each person, and it doesn't cover
-many possible scenarios that happen in real time.
+To achieve good results, it was necessary to apply data augmentation techniques.
+The reason is that the amount of data for each person is limited, and it doesn't cover
+many possible scenarios that may occur in real time.
 
-So, the techinique applied was the variation of luminosity of the photo, and it
+So, the technique applied was the variation of luminosity of the photo, which
 improved the results considerably.
 
 ![Data Augmentation](images-demo/data_augmentation.JPG)
@@ -55,23 +53,21 @@ improved the results considerably.
 ### Results
 
 The results of each classifier, with VGG-Face and Facenet, are shown in the 
-figure below. They were evaluated within the database that was splitted in 
+figure below. They were evaluated on the database that was split in 
 train and test. 
-
 
 ![Example1](images-demo/results.JPG)
 
 
 ### Real time
 
-In real time, the results were a little worse, because it happens scenarios
-not covered by the dataset, but still got good results.
+In real time, the results are a little worse due to scenarios that are not covered by the dataset. 
+However, the model still achieves good and consistent results.
 
-To evaluate in real time it was necessary an algorithm for face detection, to get
-the face cutted automatically for the embedding extraction and face classification.
-To do it task, it was used tested the detecion models, that are aggregated in 
-DeepFace, "MTCNN" and the deepface implementation using "OpenCV". 
+To evaluate in real time, it was necessary to use an algorithm for face detection, to 
+automatically crop the face for the embedding extractor and the face classificator.
+To do this, the detection models already aggregated in DeepFace were used: "MTCNN" and the DeepFace implementation with OpenCV called "OpenCV"
 
-The MTCNN got better results detecting faces, but it slowed down the execution
-of the code. In contrast the solution with OpenCV was faster, but didn't performed
-very well. So, it was prefered the solution with MTCNN.
+The MTCNN achieved better results in detecting faces, but it slowed down the execution. In contrast, 
+the solution with OpenCV was faster, but didn't perform very well. So, the solution with MTCNN was 
+preferred because of its performance.
